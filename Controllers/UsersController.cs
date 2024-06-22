@@ -23,6 +23,8 @@ namespace EczamenV3.Controllers
         [Route("SingIn")]
         [ApiExplorerSettings(GroupName ="v2")]
         [HttpPost]
+        [ProducesResponseType(typeof(Users), 200)]
+        [ProducesResponseType(500)]
         public ActionResult SingIn(string Login, string Password)
         {
             try
@@ -33,7 +35,7 @@ namespace EczamenV3.Controllers
                 {
                     user.Token = GetToken();
                     usersContext.SaveChanges();
-                    return Json(User);
+                    return Json(user.Token);
                 }
                 else return StatusCode(400);
             }

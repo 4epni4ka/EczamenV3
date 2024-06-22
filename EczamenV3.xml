@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EczamenV3</name>
+    </assembly>
+    <members>
+        <member name="M:EczamenV3.Controllers.PlainsController.List">
+            <summary>
+             Список самолётов
+             </summary>
+             <remarks>Метод создан для вывода списка самолётов</remarks>
+             <responses code="200">Список успешно выведен</responses>
+             <responses code="500">Ошибка в подключении к базе данных</responses>
+        </member>
+        <member name="M:EczamenV3.Controllers.PlainsController.AddPlain(EczamenV3.Models.Plains,System.String)">
+            <summary>
+             Создание самолёта
+             </summary>
+             <remarks>Метод для создания самолёта</remarks>
+             <returns name="Plain">Модель самолёта</returns>
+             <returns name="Token">Токен пользователя</returns>
+             <responses code="200">Самолёт успешно добавлен</responses>
+             <responses code="400">Токен не верен</responses>
+             <responses code="500">Ошибка в подключении к базе данных</responses>
+        </member>
+        <member name="M:EczamenV3.Controllers.PlainsController.UpdatePlain(EczamenV3.Models.Plains,System.String)">
+            <summary>
+             Изменение самолёта
+             </summary>
+             <remarks>Метод для изменения самолёта</remarks>
+             <returns name="Plain">Модель самолёта</returns>
+             <returns name="Token">Токен пользователя</returns>
+             <responses code="200">Самолёт успешно добавлен</responses>
+             <responses code="400">Токен не верен</responses>
+             <responses code="402">Такой самолёт не найден</responses>
+             <responses code="500">Ошибка в подключении к базе данных</responses>
+        </member>
+        <member name="M:EczamenV3.Controllers.PlainsController.RemovePlain(System.Int32,System.String)">
+            <summary>
+             Удаление самолёта
+             </summary>
+             <remarks>Метод для удаления самолёта</remarks>
+             <returns name="Id">Идентификатор самолёта</returns>
+             <returns name="Token">Токен пользователя</returns>
+             <responses code="200">Самолёт успешно удалён</responses>
+             <responses code="400">Токен не верен</responses>
+             <responses code="402">Такой самолёт не найден</responses>
+             <responses code="500">Ошибка в подключении к базе данных</responses>
+        </member>
+        <member name="M:EczamenV3.Controllers.UsersController.SingIn(System.String,System.String)">
+            <summary>
+             Авторизация пользователя
+             </summary>
+             <remarks>Метод создан для авторизации пользователя</remarks>
+             <returns name="Login">Логин пользователя</returns>
+             <returns name="Password">Пароль пользователя</returns>
+             <responses code="200">Авторизация успешна</responses>
+             <responses code="400">Пользователь не найден</responses>
+             <responses code="500">Ошибка в подключении к базе данных</responses>
+        </member>
+    </members>
+</doc>
