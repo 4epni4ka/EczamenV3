@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,44 +14,53 @@ namespace EczamenV3
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
+            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddSwaggerGen(c =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v1",
+                    Title="Запросы GET",
+                    Description="Запросы GET"
+                });
+                c.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v2",
+                    Title = "Запросы POST",
+                    Description = "Запросы POST"
+                });
+                c.SwaggerDoc("v3", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v3",
+                    Title = "Запросы PUT",
+                    Description = "Запросы PUT"
+                });
+                c.SwaggerDoc("v4", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v4",
+                    Title = "Запросы DELETE",
+                    Description = "Запросы DELETE"
+                });
+                string path = Path.Combine(AppContext.BaseDirectory, "EczamenV3.xml");
+                c.IncludeXmlComments(path);
             });
         }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseMvc();
+            app.UseStatusCodePages();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы GET");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы POST");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы PUT");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы DELETE");
+            });
+        }
+
     }
 }
