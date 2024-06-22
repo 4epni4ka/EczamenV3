@@ -4,7 +4,7 @@
         <name>EczamenV3</name>
     </assembly>
     <members>
-        <member name="M:EczamenV3.Controllers.PlainsController.List">
+        <member name="M:EczamenV3.Controllers.PlainsController.ListPlains">
             <summary>
              Список самолётов
              </summary>
@@ -20,7 +20,7 @@
              <returns name="Plain">Модель самолёта</returns>
              <returns name="Token">Токен пользователя</returns>
              <responses code="200">Самолёт успешно добавлен</responses>
-             <responses code="400">Токен не верен</responses>
+             <responses code="401">Токен не верен</responses>
              <responses code="500">Ошибка в подключении к базе данных</responses>
         </member>
         <member name="M:EczamenV3.Controllers.PlainsController.UpdatePlain(EczamenV3.Models.Plains,System.String)">
@@ -31,7 +31,7 @@
              <returns name="Plain">Модель самолёта</returns>
              <returns name="Token">Токен пользователя</returns>
              <responses code="200">Самолёт успешно добавлен</responses>
-             <responses code="400">Токен не верен</responses>
+             <responses code="401">Токен не верен</responses>
              <responses code="402">Такой самолёт не найден</responses>
              <responses code="500">Ошибка в подключении к базе данных</responses>
         </member>
@@ -43,8 +43,53 @@
              <returns name="Id">Идентификатор самолёта</returns>
              <returns name="Token">Токен пользователя</returns>
              <responses code="200">Самолёт успешно удалён</responses>
-             <responses code="400">Токен не верен</responses>
+             <responses code="401">Токен не верен</responses>
              <responses code="402">Такой самолёт не найден</responses>
+             <responses code="500">Ошибка в подключении к базе данных</responses>
+        </member>
+        <member name="M:EczamenV3.Controllers.ReisesController.ListReises">
+            <summary>
+             Список рейсов
+             </summary>
+             <remarks>Метод создан для вывода списка рейсов</remarks>
+             <responses code="200">Список успешно выведен</responses>
+             <responses code="500">Ошибка в подключении к базе данных</responses>
+        </member>
+        <member name="M:EczamenV3.Controllers.ReisesController.AddReises(EczamenV3.Models.Reises,System.String)">
+            <summary>
+             Создание рейса
+             </summary>
+             <remarks>Метод для создания рейса</remarks>
+             <returns name="Plain">Модель рейса</returns>
+             <returns name="Token">Токен пользователя</returns>
+             <responses code="200">Рейс успешно добавлен</responses>
+             <responses code="400">Самолёт не найден</responses>
+             <responses code="401">Токен не верен</responses>
+             <responses code="500">Ошибка в подключении к базе данных</responses>
+        </member>
+        <member name="M:EczamenV3.Controllers.ReisesController.UpdateReises(EczamenV3.Models.Reises,System.String)">
+            <summary>
+             Обновление рейса
+             </summary>
+             <remarks>Метод для обновления рейса</remarks>
+             <returns name="Plain">Модель рейса</returns>
+             <returns name="Token">Токен пользователя</returns>
+             <response code="200">Рейс успешно добавлен</response>
+             <response code="400">Самолёт не найден</response>
+             <response code="401">Токен не верен</response>
+             <response code="402">Рейс не найден</response>
+             <response code="500">Ошибка в подключении к базе данных</response>
+        </member>
+        <member name="M:EczamenV3.Controllers.ReisesController.RemoveReises(System.Int32,System.String)">
+            <summary>
+             Удаление рейса
+             </summary>
+             <remarks>Метод для удаления самолёта</remarks>
+             <returns name="Id">Идентификатор рейса</returns>
+             <returns name="Token">Токен пользователя</returns>
+             <responses code="200">Рейс успешно удалён</responses>
+             <responses code="401">Токен не верен</responses>
+             <responses code="402">Такой рейс не найден</responses>
              <responses code="500">Ошибка в подключении к базе данных</responses>
         </member>
         <member name="M:EczamenV3.Controllers.UsersController.SingIn(System.String,System.String)">

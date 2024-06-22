@@ -16,12 +16,12 @@ namespace EczamenV3.Controllers
         /// <remarks>Метод создан для вывода списка самолётов</remarks>
         /// <responses code="200">Список успешно выведен</responses>
         /// <responses code="500">Ошибка в подключении к базе данных</responses>
-        [Route("List")]
+        [Route("ListPlains")]
         [ApiExplorerSettings(GroupName = "v1")]
         [HttpGet]
         [ProducesResponseType(typeof(List<Plains>), 200)]
         [ProducesResponseType(500)]
-        public ActionResult List()
+        public ActionResult ListPlains()
         {
             try
             {
